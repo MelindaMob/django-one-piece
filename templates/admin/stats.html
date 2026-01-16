@@ -1,0 +1,19 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Statistiques One Piece Knowledge Base{% endblock %}
+
+{% block content %}
+<h1>Statistiques One Piece Knowledge Base</h1>
+
+<div style="margin: 20px 0;">
+    <h2>Répartition des fruits du démon par type</h2>
+    <img src="data:image/png;base64,{{ graph1 }}" alt="Graphique fruits par type" style="max-width: 100%;" />
+</div>
+
+<div style="margin: 20px 0;">
+    <h2>Top 10 équipages par nombre de membres</h2>
+    <img src="data:image/png;base64,{{ graph2 }}" alt="Graphique top équipages" style="max-width: 100%;" />
+</div>
+{% endblock %}
+

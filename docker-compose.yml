@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  oracle:
+    image: gvenzl/oracle-xe:latest
+    container_name: opkb_oracle
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PASSWORD:-oracle}
+      ORACLE_DATABASE: ${ORACLE_DATABASE:-XE}
+    ports:
+      - "${ORACLE_PORT:-1521}:1521"
+    volumes:
+      - oracle_data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD-SHELL", "sqlplus -s sys/${ORACLE_PASSWORD:-oracle}@localhost:1521/XE as sysdba <<< 'SELECT 1 FROM DUAL;' | grep -q '1'"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - opkb_network
+
+  web:
+    build: .
+    container_name: opkb_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      DB_USER: ${DB_USER:-opkb_user}
+      DB_PASSWORD: ${DB_PASSWORD:-opkb_pass}
+      DB_SERVICE: ${DB_SERVICE:-XE}
+      DB_HOST: ${DB_HOST:-oracle}
+      DB_PORT: ${DB_PORT:-1521}
+      SECRET_KEY: ${SECRET_KEY:-django-insecure-dev-key-change-in-production}
+      DEBUG: ${DEBUG:-True}
+    depends_on:
+      oracle:
+        condition: service_healthy
+    networks:
+      - opkb_network
+
+networks:
+  opkb_network:
+    driver: bridge
+
+volumes:
+  oracle_data:
+
