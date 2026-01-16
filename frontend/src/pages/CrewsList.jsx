@@ -39,17 +39,14 @@ function CrewsList() {
   if (loading && crews.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-op-yellow mx-auto mb-4"></div>
-          <p className="text-op-yellow text-xl font-semibold">Chargement...</p>
-        </div>
+        <p className="text-op-red text-xl font-semibold">Chargement...</p>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="bg-red-900 border-4 border-op-red text-white p-6 rounded-lg shadow-2xl">
+      <div className="bg-red-100 border-2 border-red-500 text-red-800 p-6 rounded-lg">
         <p className="text-xl font-bold">Erreur: {error}</p>
       </div>
     )
@@ -57,24 +54,24 @@ function CrewsList() {
 
   return (
     <div>
-      <h1 className="font-pirata text-5xl text-op-yellow mb-8 drop-shadow-lg">Équipages</h1>
+      <h1 className="text-4xl font-bold text-op-red mb-8">Équipages</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {crews.map(crew => (
           <Link
             key={crew.id}
             to={`/crews/${crew.id}`}
-            className="bg-gradient-to-br from-op-navy to-op-dark border-4 border-op-red rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-op-red transition-all duration-300 transform"
+            className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 border-2 border-transparent hover:border-op-red"
           >
-            <h3 className="text-2xl font-bold text-op-yellow mb-3 font-pirata">{crew.name}</h3>
+            <h3 className="text-2xl font-bold text-op-red mb-3">{crew.name}</h3>
             {crew.ship_name && (
-              <p className="text-gray-300 mb-2">
-                <span className="text-op-blue font-semibold">🚢 Navire:</span> {crew.ship_name}
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">🚢 Navire:</span> {crew.ship_name}
               </p>
             )}
             {crew.base_location && (
-              <p className="text-gray-300">
-                <span className="text-op-blue font-semibold">📍 Base:</span> {crew.base_location}
+              <p className="text-gray-700">
+                <span className="font-semibold">📍 Base:</span> {crew.base_location}
               </p>
             )}
           </Link>
@@ -85,17 +82,17 @@ function CrewsList() {
         <button
           onClick={() => setPage(p => Math.max(1, p - 1))}
           disabled={!previous}
-          className="px-6 py-3 bg-op-red text-white font-bold rounded-lg hover:bg-opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-op-yellow"
+          className="px-6 py-2 bg-op-red text-white font-semibold rounded hover:bg-op-red-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Précédent
         </button>
-        <span className="text-op-yellow font-bold text-lg">
+        <span className="text-gray-700 font-semibold">
           Page {page} sur {Math.ceil(count / 10)}
         </span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={!next}
-          className="px-6 py-3 bg-op-red text-white font-bold rounded-lg hover:bg-opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-op-yellow"
+          className="px-6 py-2 bg-op-red text-white font-semibold rounded hover:bg-op-red-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Suivant
         </button>

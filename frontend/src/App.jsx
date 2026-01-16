@@ -12,46 +12,54 @@ import ArcDetail from './pages/ArcDetail'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-op-dark via-op-navy to-blue-900">
-        {/* Navbar avec thème One Piece */}
-        <nav className="bg-op-dark border-b-4 border-op-red shadow-2xl">
+      <div className="min-h-screen bg-op-gray">
+        {/* Header rouge style One Piece officiel */}
+        <header className="bg-op-red text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-                <span className="text-4xl">🏴‍☠️</span>
-                <h1 className="font-pirata text-3xl md:text-4xl text-op-yellow font-bold tracking-wide">
-                  Encyclopédie de One Piece
-                </h1>
+            <div className="flex items-center justify-between h-20">
+              {/* Logo */}
+              <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
+                <div className="text-4xl">🏴‍☠️</div>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-bold tracking-wide">ONE PIECE</span>
+                  <span className="text-xs">ENCYCLOPEDIE</span>
+                </div>
               </Link>
-              <div className="hidden md:flex space-x-6">
+
+              {/* Navigation */}
+              <nav className="hidden md:flex items-center space-x-6">
                 <Link 
                   to="/characters" 
-                  className="text-white hover:text-op-yellow font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-opacity-20 hover:bg-op-yellow"
+                  className="flex items-center space-x-2 px-4 py-2 hover:bg-op-red-dark rounded transition-colors"
                 >
-                  Personnages
+                  <span>👤</span>
+                  <span className="font-medium">Personnages</span>
                 </Link>
                 <Link 
                   to="/crews" 
-                  className="text-white hover:text-op-yellow font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-opacity-20 hover:bg-op-yellow"
+                  className="flex items-center space-x-2 px-4 py-2 hover:bg-op-red-dark rounded transition-colors"
                 >
-                  Équipages
+                  <span>🚢</span>
+                  <span className="font-medium">Équipages</span>
                 </Link>
                 <Link 
                   to="/fruits" 
-                  className="text-white hover:text-op-yellow font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-opacity-20 hover:bg-op-yellow"
+                  className="flex items-center space-x-2 px-4 py-2 hover:bg-op-red-dark rounded transition-colors"
                 >
-                  Fruits du Démon
+                  <span>🍎</span>
+                  <span className="font-medium">Fruits du Démon</span>
                 </Link>
                 <Link 
                   to="/arcs" 
-                  className="text-white hover:text-op-yellow font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-opacity-20 hover:bg-op-yellow"
+                  className="flex items-center space-x-2 px-4 py-2 hover:bg-op-red-dark rounded transition-colors"
                 >
-                  Arcs
+                  <span>📖</span>
+                  <span className="font-medium">Arcs</span>
                 </Link>
-              </div>
+              </nav>
             </div>
           </div>
-        </nav>
+        </header>
 
         {/* Contenu principal */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -69,9 +77,9 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-op-dark border-t-4 border-op-red mt-16 py-6">
-          <div className="max-w-7xl mx-auto px-4 text-center text-gray-400">
-            <p className="font-pirata text-lg">🏴‍☠️ Encyclopédie de One Piece - Base de connaissances</p>
+        <footer className="bg-op-dark text-white mt-16 py-6">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <p className="text-sm">© Encyclopédie de One Piece - Base de connaissances</p>
           </div>
         </footer>
       </div>

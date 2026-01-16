@@ -48,17 +48,14 @@ function ArcsList() {
   if (loading && arcs.length === 0) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-op-yellow mx-auto mb-4"></div>
-          <p className="text-op-yellow text-xl font-semibold">Chargement...</p>
-        </div>
+        <p className="text-op-red text-xl font-semibold">Chargement...</p>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="bg-red-900 border-4 border-op-red text-white p-6 rounded-lg shadow-2xl">
+      <div className="bg-red-100 border-2 border-red-500 text-red-800 p-6 rounded-lg">
         <p className="text-xl font-bold">Erreur: {error}</p>
       </div>
     )
@@ -67,10 +64,10 @@ function ArcsList() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="font-pirata text-5xl text-op-yellow mb-4 drop-shadow-lg">Arcs</h1>
+        <h1 className="text-4xl font-bold text-op-red mb-6">Arcs</h1>
         <input
           type="text"
-          className="w-full px-6 py-4 bg-op-navy border-4 border-op-blue rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-op-blue focus:ring-opacity-50 text-lg"
+          className="w-full px-6 py-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-op-red text-lg"
           placeholder="🔍 Rechercher un arc..."
           value={search}
           onChange={handleSearch}
@@ -82,14 +79,14 @@ function ArcsList() {
           <Link
             key={arc.id}
             to={`/arcs/${arc.id}`}
-            className="bg-gradient-to-br from-op-navy to-op-dark border-4 border-op-blue rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-op-blue transition-all duration-300 transform"
+            className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 border-2 border-transparent hover:border-op-red"
           >
-            <h3 className="text-2xl font-bold text-op-blue mb-3 font-pirata">{arc.name}</h3>
+            <h3 className="text-2xl font-bold text-op-red mb-3">{arc.name}</h3>
             {arc.saga && (
-              <p className="text-op-yellow font-semibold mb-2">Saga: {arc.saga}</p>
+              <p className="text-gray-700 font-semibold mb-2">Saga: {arc.saga}</p>
             )}
-            <p className="text-gray-300">
-              <span className="font-semibold text-op-blue">Épisodes:</span> #{arc.start_episode_number} - #{arc.end_episode_number}
+            <p className="text-gray-700">
+              <span className="font-semibold">Épisodes:</span> #{arc.start_episode_number} - #{arc.end_episode_number}
             </p>
           </Link>
         ))}
@@ -99,17 +96,17 @@ function ArcsList() {
         <button
           onClick={() => setPage(p => Math.max(1, p - 1))}
           disabled={!previous}
-          className="px-6 py-3 bg-op-red text-white font-bold rounded-lg hover:bg-opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-op-yellow"
+          className="px-6 py-2 bg-op-red text-white font-semibold rounded hover:bg-op-red-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Précédent
         </button>
-        <span className="text-op-yellow font-bold text-lg">
+        <span className="text-gray-700 font-semibold">
           Page {page} sur {Math.ceil(count / 10)}
         </span>
         <button
           onClick={() => setPage(p => p + 1)}
           disabled={!next}
-          className="px-6 py-3 bg-op-red text-white font-bold rounded-lg hover:bg-opacity-80 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-op-yellow"
+          className="px-6 py-2 bg-op-red text-white font-semibold rounded hover:bg-op-red-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           Suivant
         </button>

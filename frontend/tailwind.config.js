@@ -8,18 +8,15 @@ export default {
     extend: {
       colors: {
         'op-red': '#DC143C',
-        'op-blue': '#1E90FF',
-        'op-yellow': '#FFD700',
-        'op-orange': '#FF8C00',
-        'op-dark': '#1a1a2e',
-        'op-navy': '#16213e',
-        'op-gold': '#D4AF37',
+        'op-red-dark': '#B71C1C',
+        'op-white': '#FFFFFF',
+        'op-gray': '#F5F5F5',
+        'op-dark': '#1a1a1a',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Noto Sans JP', 'sans-serif'],
       },
     },
   },
   plugins: [],
 }
-
